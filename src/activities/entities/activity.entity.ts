@@ -1,33 +1,22 @@
-import { Activity } from 'src/activities/entities/activity.entity';
-import { Goal } from 'src/goals/entities/goal.entity';
-
+import { User } from 'src/users/entities/user.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   DeleteDateColumn,
-  OneToMany,
+  ManyToOne,
 } from 'typeorm';
 
-@Entity('users')
-export class User {
+@Entity('activities')
+export class Activity {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
-  firstName: string;
+  value: string;
 
   @Column()
-  lastName: string;
-
-  @Column()
-  email: string;
-
-  @Column()
-  encryptedPassword: string;
-
-  @Column()
-  encryptedPasswordSalt: string;
+  date: Date;
 
   @Column({
     type: 'timestamp with time zone',
@@ -44,9 +33,6 @@ export class User {
   @DeleteDateColumn({ type: 'timestamp with time zone', nullable: true })
   deletedAt: Date;
 
-  @OneToMany(() => Goal, (goal) => goal.user)
-  goals: Goal[];
-
-  @OneToMany(() => Activity, (activity) => activity.user)
-  activities: Activity[];
+  @ManyToOne(() => User, (user) => user.activities)
+  user: User;
 }

@@ -22,7 +22,6 @@ export class UsersService {
 
   async update(id: string, updateUserDto: UpdateUserDto) {
     await getConnection().manager.update(User, id, updateUserDto);
-
     return getConnection().manager.findOne(User, id);
   }
 
