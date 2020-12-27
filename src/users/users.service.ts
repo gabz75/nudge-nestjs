@@ -28,6 +28,6 @@ export class UsersService {
 
   async remove(id: string) {
     const user = await getConnection().manager.findOne(User, id);
-    return getConnection().manager.remove(user);
+    return getConnection().manager.softRemove(user);
   }
 }

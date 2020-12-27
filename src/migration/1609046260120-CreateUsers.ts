@@ -10,6 +10,9 @@ export class CreateUsers1609046260120 implements MigrationInterface {
             name: 'id',
             type: 'uuid',
             isPrimary: true,
+            isUnique: true,
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'firstName',
@@ -34,10 +37,12 @@ export class CreateUsers1609046260120 implements MigrationInterface {
           {
             name: 'created_at',
             type: 'timestamp with time zone',
+            default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'updated_at',
             type: 'timestamp with time zone',
+            default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'deleted_at',
